@@ -12,4 +12,14 @@ public class HomeController {
     public String landingPage(){
         return "This is the landing page!";
     }
+
+    @GetMapping("/home")
+    public String welcome(){
+        return "home";
+    }
+
+    @GetMapping("/welcome")
+    public String welcomePartials(){
+        return "welcome";
+    }
 }
