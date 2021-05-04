@@ -1,8 +1,20 @@
 package com.example.demo.models;
 
+import org.springframework.stereotype.Controller;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(unique = true)
     private String title;
+
+    @Column(nullable = false, unique = true)
     private String body;
 
     public Post() {
