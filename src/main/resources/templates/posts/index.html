@@ -10,8 +10,9 @@
     <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
         <div th:text="${post.title}" class="card-header">Header</div>
         <div class="card-body">
-            <h5 th:text="${post.id}" class="card-title">Primary card title</h5>
-            <p th:text="${post.body}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 th:text="${post.body}" class="card-title">Primary card title</h5>
+<!--            <a th:href="@{/posts/{id}(id =${post.id})}/edit/" class="card-link text-white">Edit Post</a>-->
+<!--            <a th:href="@{/posts/edit/{id}(id =${post.id})}" class="card-link text-white">Delete Post</a>-->
         </div>
     </div>
 </div>

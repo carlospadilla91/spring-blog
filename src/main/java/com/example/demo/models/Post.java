@@ -11,13 +11,18 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true)
+    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, unique = true)
+    @Column(columnDefinition = "TEXT NOT NULL")
     private String body;
 
     public Post() {
+    }
+
+    public Post(String title, String body) {
+        this.title = title;
+        this.body = body;
     }
 
     public Post(long id, String title, String body) {
