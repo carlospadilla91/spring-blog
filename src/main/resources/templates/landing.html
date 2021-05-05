@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/head :: head('Welcome')" />
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="partials/navbar :: navbar" />
+
+<div class="container">
+    <h1>Welcome to Spring-Blog!</h1>
+</div>
+
+<th:block th:replace="partials/footer :: footer"/>
+</body>
+</html>
