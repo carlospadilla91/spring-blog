@@ -16,8 +16,8 @@
         <th:block th:each="image : ${post.images}">
             <img th:src="${image.url}" class="card-img-bottom" alt="kitten" width="200" height="500">
         </th:block>
-
     </div>
+    <h3>Posted by: <span th:text="${post.user.email}"></span></h3>
 </div>
 
 

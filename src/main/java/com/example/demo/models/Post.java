@@ -18,6 +18,9 @@ public class Post {
     @Column(columnDefinition = "TEXT NOT NULL")
     private String body;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
+
     @OneToOne(cascade = CascadeType.ALL)
     private PostDetails postDetails;
 
@@ -77,5 +80,13 @@ public class Post {
 
     public void setImages(List<PostImage> images) {
         this.images = images;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

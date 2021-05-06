@@ -1,23 +1,24 @@
 package com.example.demo.controller;
 
 import com.example.demo.models.Post;
-import com.example.demo.models.PostDetails;
+import com.example.demo.models.User;
 import com.example.demo.repositories.PostRepository;
+import com.example.demo.repositories.UserRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepo userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepo userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
+
 
     // displaying all posts
     @GetMapping("/posts")
@@ -36,10 +37,13 @@ public class PostController {
     @PostMapping("/posts/create")
     public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
         Post newPost = new Post(title, body);
-        postDao.save(newPost);
+        User user = userDao.getOne(1L); // this code is getting the user with id = 1
+        newPost.setUser(user); // here we are assigning the user to the newPost
+        postDao.save(newPost); // save to DB
         return "redirect:/posts";
     }
 
+    // displaying the edit form and using the postDao and Model to show existing data of post on edit form
     @GetMapping("/posts/{id}/edit")
     public String showEditForm(@PathVariable long id, Model vModel){
         Post postToEdit = postDao.getOne(id);
@@ -47,6 +51,7 @@ public class PostController {
         return "posts/edit";
     }
 
+    //
     @PostMapping("/posts/{id}/edit")
     public String update(@PathVariable long id,
                          @RequestParam String title,
