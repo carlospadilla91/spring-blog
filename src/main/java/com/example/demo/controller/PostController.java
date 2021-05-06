@@ -69,9 +69,9 @@ public class PostController {
     @GetMapping("/posts/{id}/show")
     public String showDetails(@PathVariable long id, Model vModel) {
         Post postToView = postDao.getOne(id);
-        PostDetails postDetails = postToView.getPostDetails();
-        vModel.addAttribute("post", postDetails);
-        vModel.addAttribute("posts", postToView);
+//        PostDetails postDetails = postToView.getPostDetails();
+        vModel.addAttribute("post", postToView);
+//        vModel.addAttribute("posts", postToView);
         return "posts/show";
     }
 
