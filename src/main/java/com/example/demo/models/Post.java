@@ -3,6 +3,7 @@ package com.example.demo.models;
 import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -16,6 +17,13 @@ public class Post {
 
     @Column(columnDefinition = "TEXT NOT NULL")
     private String body;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private PostDetails postDetails;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post", orphanRemoval = true)
+    private List<PostImage> images;
+
 
     public Post() {
     }
@@ -53,5 +61,21 @@ public class Post {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public PostDetails getPostDetails() {
+        return postDetails;
+    }
+
+    public void setPostDetails(PostDetails postDetails) {
+        this.postDetails = postDetails;
+    }
+
+    public List<PostImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<PostImage> images) {
+        this.images = images;
     }
 }
