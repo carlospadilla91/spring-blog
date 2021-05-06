@@ -4,18 +4,20 @@
 <body class="d-flex flex-column min-vh-100">
 <nav th:replace="partials/navbar :: navbar"/>
 
-<h1>All Posts</h1>
-
-<div th:each="post : ${allPosts}">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-        <div th:text="${post.title}" class="card-header">Header</div>
-        <div class="card-body">
-            <h5 th:text="${post.body}" class="card-title">Primary card title</h5>
-<!--            <a th:href="@{/posts/{id}(id =${post.id})}/edit/" class="card-link text-white">Edit Post</a>-->
-<!--            <a th:href="@{/posts/edit/{id}(id =${post.id})}" class="card-link text-white">Delete Post</a>-->
+<div class="container">
+    <h1>All Posts</h1>
+    <div th:each="post : ${allPosts}">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+            <div th:text="${post.title}" class="card-header">Header</div>
+            <div class="card-body">
+                <h5 th:text="${post.body}" class="card-title">Primary card title</h5>
+                <a th:href="'/posts/' + ${post.id} + '/edit'" class="card-link text-white">Edit Post</a>
+                <a th:href="'/posts/' + ${post.id} + '/show'" class="card-link text-white">See more...</a>
+            </div>
         </div>
     </div>
 </div>
+
 
 <footer th:replace="partials/footer :: footer"/>
 </body>

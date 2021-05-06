@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.models.Post;
+import com.example.demo.models.PostDetails;
 import com.example.demo.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +64,15 @@ public class PostController {
     public String delete(@PathVariable long id) {
         postDao.deleteById(id);
         return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}/show")
+    public String showDetails(@PathVariable long id, Model vModel) {
+        Post postToView = postDao.getOne(id);
+        PostDetails postDetails = postToView.getPostDetails();
+        vModel.addAttribute("post", postDetails);
+        vModel.addAttribute("posts", postToView);
+        return "posts/show";
     }
 
 

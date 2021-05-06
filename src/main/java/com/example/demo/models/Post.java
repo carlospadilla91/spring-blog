@@ -17,6 +17,10 @@ public class Post {
     @Column(columnDefinition = "TEXT NOT NULL")
     private String body;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private PostDetails postDetails;
+
+
     public Post() {
     }
 
@@ -53,5 +57,13 @@ public class Post {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public PostDetails getPostDetails() {
+        return postDetails;
+    }
+
+    public void setPostDetails(PostDetails postDetails) {
+        this.postDetails = postDetails;
     }
 }

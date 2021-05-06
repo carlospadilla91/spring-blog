@@ -4,15 +4,18 @@
 <body class="d-flex flex-column min-vh-100">
 <nav th:replace="partials/navbar :: navbar"/>
 
-<h1>You are viewing an individual post</h1>
+<div class="container">
+    <h1>Additional Details!</h1>
 
-<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-    <div th:text="${post.title}" class="card-header">Header</div>
-    <div class="card-body">
-        <h5 th:text="${post.id}" class="card-title">Primary card title</h5>
-        <p th:text="${post.body}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="card bg-secondary text-white">
+        <h5 class="card-header" th:text="${posts.title}">Featured</h5>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${post.historyOfPost}">Special title treatment</h5>
+            <p class="card-text">Topics: <span th:text="${post.topicDescription}"></span></p>
+        </div>
     </div>
 </div>
+
 
 <footer th:replace="partials/footer :: footer"/>
 </body>
