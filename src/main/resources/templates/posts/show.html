@@ -13,11 +13,11 @@
             <h5 class="card-title" th:text="${post.postDetails.historyOfPost}">Special title treatment</h5>
             <p class="card-text">Topics: <span th:text="${post.postDetails.topicDescription}"></span></p>
         </div>
-        <th:block th:each="image : ${post.images}">
-            <img th:src="${image.url}" class="card-img-bottom" alt="kitten" width="200" height="500">
-        </th:block>
+<!--        <th:block th:each="image : ${post.images}">-->
+<!--            <img th:src="${image.url}" class="card-img-bottom" alt="kitten" width="200" height="500">-->
+<!--        </th:block>-->
     </div>
-    <h3>Posted by: <span th:text="${post.user.email}"></span></h3>
+<!--    <h3>Posted by: <span th:text="${post.user.email}"></span></h3>-->
 </div>
 
 

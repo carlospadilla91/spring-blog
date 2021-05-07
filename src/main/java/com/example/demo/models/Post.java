@@ -18,13 +18,13 @@ public class Post {
     @Column(columnDefinition = "TEXT NOT NULL")
     private String body;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL)
     private PostDetails postDetails;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<PostImage> images;
 
 

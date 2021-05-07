@@ -29,17 +29,15 @@ public class PostController {
 
     // displaying create form to user
     @GetMapping("/posts/create")
-    public String showCreateForm(){
+    public String showCreateForm(Model vModel){
+        vModel.addAttribute("post", new Post());
         return "posts/create";
     }
 
     // receiving post request from user and saving data into a new post then using postDao to save then at the end redirect back to "/posts"
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
-        Post newPost = new Post(title, body);
-        User user = userDao.getOne(1L); // this code is getting the user with id = 1
-        newPost.setUser(user); // here we are assigning the user to the newPost
-        postDao.save(newPost); // save to DB
+    public String createPost(@ModelAttribute Post post){
+        postDao.save(post); // save to DB
         return "redirect:/posts";
     }
 
@@ -53,15 +51,8 @@ public class PostController {
 
     //
     @PostMapping("/posts/{id}/edit")
-    public String update(@PathVariable long id,
-                         @RequestParam String title,
-                         @RequestParam String body) {
-        Post postToUpdate = new Post(
-                id,
-                title,
-                body
-        );
-        postDao.save(postToUpdate);
+    public String update(@ModelAttribute Post postToEdit) {
+        postDao.save(postToEdit);
         return "redirect:/posts";
     }
 
