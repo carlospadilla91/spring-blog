@@ -4,6 +4,7 @@ import com.example.demo.models.Post;
 import com.example.demo.models.User;
 import com.example.demo.repositories.PostRepository;
 import com.example.demo.repositories.UserRepo;
+import com.example.demo.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +14,12 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepo userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepo userDao) {
+    public PostController(PostRepository postDao, UserRepo userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
 
@@ -38,6 +41,7 @@ public class PostController {
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
         postDao.save(post); // save to DB
+        emailService.prepareAndSend(post, "New post!", "You have successfully created a new post!");
         return "redirect:/posts";
     }
 
