@@ -5,6 +5,7 @@ import com.example.demo.models.User;
 import com.example.demo.repositories.PostRepository;
 import com.example.demo.repositories.UserRepo;
 import com.example.demo.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,9 @@ public class PostController {
     // receiving post request from user and saving data into a new post then using postDao to save then at the end redirect back to "/posts"
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getOne(principal.getId());  // getting currently signed in user; our Dao gets all info needed
+        post.setUser(user); // assigning currently sing user to newly created post
         postDao.save(post); // save to DB
         emailService.prepareAndSend(post, "New post!", "You have successfully created a new post!");
         return "redirect:/posts";
