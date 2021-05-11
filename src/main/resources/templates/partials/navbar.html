@@ -23,6 +23,9 @@
             <li class="nav-item">
                 <a th:href="@{/login}">Login</a>
             </li>
+            <li class="nav-item">
+                <a th:href="@{/register}">Register</a>
+            </li>
             <li sec:authorize="isAuthenticated()" class="nav-item ml-auto">
                 <form th:action="@{/logout}" th:method="post">
                     <button>Logout</button>
