@@ -23,7 +23,7 @@ public class UserController {
     @GetMapping("/register")
     public String showRegisterForm(Model vModel) {
         vModel.addAttribute("user", new User());
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
